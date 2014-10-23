@@ -1,7 +1,7 @@
 {
   "name": "kind-of",
   "description": "Get the native type of a value.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/kind-of",
   "author": {
     "name": "Jon Schlinkert",

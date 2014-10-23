@@ -16,6 +16,10 @@ module.exports = function kindOf(value) {
     return 'undefined';
   }
 
+  if (typeof value !== 'object') {
+    return typeof value;
+  }
+
   return {}.toString.call(value).toLowerCase()
-    .replace(/^\[object ([\S]+)\]$/, '$1');
+    .replace(/^\[object (\S+)\]$/, '$1');
 };
