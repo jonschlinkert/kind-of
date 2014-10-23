@@ -20,6 +20,6 @@ module.exports = function kindOf(value) {
     return typeof value;
   }
 
-  return {}.toString.call(value).toLowerCase()
-    .replace(/^\[object (\S+)\]$/, '$1');
+  return {}.toString.call(value)
+    .slice(8, -1).toLowerCase();
 };
