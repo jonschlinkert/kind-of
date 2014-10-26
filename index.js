@@ -3,23 +3,27 @@
 /**
  * Get the native `typeof` a value.
  *
- * @param  {*} `value`
- * @return {*}
+ * @param  {*} `val`
+ * @return {*} Native javascript type
  */
 
-module.exports = function kindOf(value) {
-  if (value === null) {
+module.exports = function kindOf(val) {
+  if (val === null) {
     return 'null';
   }
 
-  if (value === undefined) {
+  if (val === undefined) {
     return 'undefined';
   }
 
-  if (typeof value !== 'object') {
-    return typeof value;
+  if (typeof val !== 'object') {
+    return typeof val;
   }
 
-  return {}.toString.call(value)
+  if (Array.isArray(val)) {
+    return 'array';
+  }
+
+  return {}.toString.call(val)
     .slice(8, -1).toLowerCase();
 };
