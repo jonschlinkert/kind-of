@@ -53,3 +53,6 @@ TODO.md
 
 # npmignore
 benchmark
+.*
+test.js
+bower.json
