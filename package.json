@@ -1,7 +1,7 @@
 {
   "name": "kind-of",
   "description": "Get the native type of a value.",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "homepage": "https://github.com/jonschlinkert/kind-of",
   "author": {
     "name": "Jon Schlinkert",
@@ -14,12 +14,10 @@
   "bugs": {
     "url": "https://github.com/jonschlinkert/kind-of/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jonschlinkert/kind-of/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jonschlinkert/kind-of/blob/master/LICENSE"
+  },
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
@@ -30,38 +28,31 @@
   "devDependencies": {
     "benchmarked": "^0.1.3",
     "chalk": "^0.5.1",
-    "glob": "^4.0.6",
-    "mocha": "*",
-    "should": "^4.0.4",
+    "glob": "^4.3.5",
+    "should": "^4.6.1",
     "type-of": "^2.0.1",
-    "typeof": "^1.0.0",
-    "verb": ">= 0.2.6"
+    "typeof": "^1.0.0"
   },
   "keywords": [
     "arguments",
     "array",
     "boolean",
+    "check",
     "date",
     "function",
-    "javascript",
-    "js",
+    "is",
+    "is-type",
+    "is-type-of",
     "kind",
     "kind-of",
-    "node",
-    "node.js",
-    "null",
     "number",
     "object",
     "regexp",
     "string",
+    "test",
     "type",
     "type-of",
     "typeof",
-    "types",
-    "undefined",
-    "util",
-    "utilities",
-    "utility",
-    "utils"
+    "types"
   ]
 }
