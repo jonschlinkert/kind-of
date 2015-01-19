@@ -1,16 +1,5 @@
-'use strict';
-
-/**
- * Get the native `typeof` a value.
- *
- * @param  {*} `val`
- * @return {*} type
- */
-
 module.exports = function typeOf(val) {
-  if (val === null) {
-    return 'null';
-  }
+  if (val === null) return 'null';
 
   if (val === undefined) {
     return 'undefined';

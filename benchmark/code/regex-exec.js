@@ -1,13 +1,4 @@
-'use strict';
-
-/**
- * Get the native `typeof` a value.
- *
- * @param  {*} `val`
- * @return {*} type
- */
-
-var re = /^\[object (\S+)\]$/;
+var re = /^\[object (\w+)\]$/;
 
 module.exports = function typeOf(val) {
   if (val === null) {
@@ -22,6 +13,6 @@ module.exports = function typeOf(val) {
     return typeof val;
   }
 
-  var type = re.exec(toString.call(val));
-  return type[1].toLowerCase();
+  var m = re.exec({}.toString.call(val));
+  return m[1].toLowerCase();
 };
