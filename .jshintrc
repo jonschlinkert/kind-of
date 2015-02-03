@@ -10,13 +10,7 @@
   "noarg": true,
   "node": true,
   "sub": true,
-  "undef": true,
+  "undef": "var",
   "unused": true,
-  "globals": {
-    "define": true,
-    "before": true,
-    "after": true,
-    "describe": true,
-    "it": true
-  }
+  "mocha": true
 }
