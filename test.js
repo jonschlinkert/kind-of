@@ -46,6 +46,10 @@ describe('kindOf', function () {
       })();
     });
 
+    it('should work for buffers', function () {
+      kindOf(new Buffer('')).should.equal('buffer');
+    });
+
     it('should work for objects', function () {
       function Test() {}
       kindOf({}).should.equal('object');
