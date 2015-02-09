@@ -14,10 +14,12 @@ module.exports = function kindOf(val) {
   if (val === null) {
     return 'null';
   }
+  if (val === true || val === false || val instanceof Boolean) {
+    return 'boolean';
+  }
   if (typeof val !== 'object') {
     return typeof val;
   }
-
   if (Array.isArray(val)) {
     return 'array';
   }
@@ -33,6 +35,11 @@ module.exports = function kindOf(val) {
   if (type === '[object Function]') {
     return 'function';
   }
-
+  if (type === '[object Arguments]') {
+    return 'arguments';
+  }
+  if (typeof Buffer !== 'undefined' && Buffer.isBuffer(val)) {
+    return 'buffer';
+  }
   return type.slice(8, -1).toLowerCase();
 };
