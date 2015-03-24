@@ -17,7 +17,6 @@ module.exports = function kindOf(val) {
   if (val === true || val === false || val instanceof Boolean) {
     return 'boolean';
   }
-
   if (typeof val !== 'object') {
     // here: function, symbol, string (literal), number (literal)
     return typeof val;
@@ -35,10 +34,14 @@ module.exports = function kindOf(val) {
     return 'buffer';
   }
 
-  // here: Map, WeakMap, Set, WeakSet, Arguments or new Number(42), new String('str')
+  // here: Map, WeakMap, Set, WeakSet, Arguments or new Number(42), new String('str'), or Date in some cases
   var type = toString.call(val);
+
   if (type === '[object Arguments]') {
     return 'arguments';
+  }
+  if (type === '[object Date]') {
+    return 'date';
   }
 
   // here: Map, WeakMap, Set, WeakSet, new Number(42), new String('str')
