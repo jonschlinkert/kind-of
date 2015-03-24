@@ -89,6 +89,11 @@ describe('kindOf', function () {
         kindOf(gen).should.equal('function');
       });
 
+      it('should work for template strings', function () {
+        var str = `Welcome buddy`;
+        kindOf(str).should.equal('string');
+      });
+
       it('should work for Map', function () {
         var map = new Map();
         kindOf(map).should.equal('map');
