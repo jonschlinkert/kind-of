@@ -8,10 +8,12 @@
 'use strict';
 
 var should = require('should');
-var kindOf = require('./');
+var kindOf = require('./index');
+
+var version = process.version.match(/^v(\d+)\.(\d+)/);
 
 describe('kindOf', function () {
-  describe('nulls', function () {
+  describe('null and undefined', function () {
     it('should work for undefined', function () {
       kindOf(undefined).should.equal('undefined');
     });
@@ -34,16 +36,14 @@ describe('kindOf', function () {
     });
 
     it('should work for strings', function () {
-      kindOf("string").should.equal('string');
+      kindOf('str').should.equal('string');
+      kindOf(new String('str')).should.equal('string');
     });
   });
 
   describe('objects', function () {
     it('should work for arguments', function () {
-      (function () {
-        kindOf(arguments).should.equal('arguments');
-        return;
-      })();
+      kindOf(arguments).should.equal('arguments');
     });
 
     it('should work for buffers', function () {
@@ -52,8 +52,13 @@ describe('kindOf', function () {
 
     it('should work for objects', function () {
       function Test() {}
-      kindOf({}).should.equal('object');
-      kindOf(new Test()).should.equal('object');
+      var instance = new Test();
+      var literal = {};
+      var create = Object.create(null);
+
+      kindOf(instance).should.equal('object');
+      kindOf(literal).should.equal('object');
+      kindOf(create).should.equal('object');
     });
 
     it('should work for dates', function () {
@@ -76,4 +81,50 @@ describe('kindOf', function () {
       kindOf(new Function()).should.equal('function');
     });
   });
+
+  if (version[1] > 0 || version[2] > 11) {
+    describe('es6 features', function () {
+      it('should work for generators', function () {
+        var gen = function * named() {return true;};
+        kindOf(gen).should.equal('function');
+      });
+
+      it('should work for Map', function () {
+        var map = new Map();
+        kindOf(map).should.equal('map');
+        kindOf(map.set).should.equal('function');
+        kindOf(map.get).should.equal('function');
+        kindOf(map.add).should.equal('undefined');
+      });
+
+      it('should work for WeakMap', function () {
+        var weakmap = new WeakMap();
+        kindOf(weakmap).should.equal('weakmap');
+        kindOf(weakmap.set).should.equal('function');
+        kindOf(weakmap.get).should.equal('function');
+        kindOf(weakmap.add).should.equal('undefined');
+      });
+
+      it('should work for Set', function () {
+        var set = new Set();
+        kindOf(set).should.equal('set');
+        kindOf(set.add).should.equal('function');
+        kindOf(set.set).should.equal('undefined');
+        kindOf(set.get).should.equal('undefined');
+      });
+
+      it('should work for WeakSet', function () {
+        var weakset = new WeakSet();
+        kindOf(weakset).should.equal('weakset');
+        kindOf(weakset.add).should.equal('function');
+        kindOf(weakset.set).should.equal('undefined');
+        kindOf(weakset.get).should.equal('undefined');
+      });
+
+      it('should work for Symbol', function () {
+        kindOf(Symbol('foo')).should.equal('symbol');
+        kindOf(Symbol.prototype).should.equal('object');
+      });
+    });
+  }
 });
