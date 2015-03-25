@@ -21,7 +21,7 @@ module.exports = function kindOf(val) {
     // here: function, symbol, string (literal), number (literal)
     return typeof val;
   }
-  if (Array.isArray(val)) {
+  if (Array.isArray && Array.isArray(val)) {
     return 'array';
   }
   if (val instanceof RegExp) {
