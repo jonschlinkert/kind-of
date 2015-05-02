@@ -10,7 +10,9 @@
 var should = require('should');
 var kindOf = require('./index');
 
-var version = process.version.match(/^v(\d+)\.(\d+)/);
+var version = process.version.match(/^.(\d+)\.(\d+)/);
+var major = version[1];
+var minor = version[2];
 
 describe('kindOf', function () {
   describe('null and undefined', function () {
@@ -81,8 +83,7 @@ describe('kindOf', function () {
       kindOf(new Function()).should.equal('function');
     });
   });
-
-  if (version[1] > 0 || version[2] > 11) {
+  if (major > 0 || minor > 11) {
     describe('es6 features', function () {
       it('should work for generators', function () {
         var gen = function * named() {return true;};
