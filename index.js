@@ -20,17 +20,20 @@ module.exports = function kindOf(val) {
   if (typeof val !== 'object') {
     return typeof val;
   }
-  if (Array.isArray(val)) {
+  if (Array.isArray && Array.isArray(val)) {
     return 'array';
   }
-
+  
   var type = toString.call(val);
-
+  
   if (val instanceof RegExp || type === '[object RegExp]') {
     return 'regexp';
   }
   if (val instanceof Date || type === '[object Date]') {
     return 'date';
+  }
+  if(type === '[object Array]') {
+    return 'array';
   }
   if (type === '[object Function]') {
     return 'function';
