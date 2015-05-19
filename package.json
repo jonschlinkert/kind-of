@@ -14,10 +14,7 @@
   "bugs": {
     "url": "https://github.com/jonschlinkert/kind-of/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jonschlinkert/kind-of/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "files": [
     "index.js"
   ],
