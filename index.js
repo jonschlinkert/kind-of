@@ -23,26 +23,25 @@ module.exports = function kindOf(val) {
   if (Array.isArray && Array.isArray(val)) {
     return 'array';
   }
-  
-  var type = toString.call(val);
-  
-  if (val instanceof RegExp || type === '[object RegExp]') {
+  if (val instanceof RegExp) {
     return 'regexp';
   }
-  if (val instanceof Date || type === '[object Date]') {
+  if (val instanceof Date) {
     return 'date';
-  }
-  if(type === '[object Array]') {
-    return 'array';
-  }
-  if (type === '[object Function]') {
-    return 'function';
-  }
-  if (type === '[object Arguments]') {
-    return 'arguments';
   }
   if (typeof Buffer !== 'undefined' && Buffer.isBuffer(val)) {
     return 'buffer';
   }
+
+  var type = toString.call(val);
+
+  if (type === '[object Arguments]') {
+    return 'arguments';
+  }
+  if (type === '[object Date]') {
+    return 'date';
+  }
+
+  // here: Map, WeakMap, Set, WeakSet, new Number(42), new String('str')
   return type.slice(8, -1).toLowerCase();
 };
