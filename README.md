@@ -108,6 +108,33 @@ kindOf(new WeakSet());
 
 kindOf(Symbol('str'));
 //=> 'symbol'
+
+kindOf(new Int8Array());
+//=> 'int8array'
+
+kindOf(new Uint8Array());
+//=> 'uint8array'
+
+kindOf(new Uint8ClampedArray());
+//=> 'uint8clampedarray'
+
+kindOf(new Int16Array());
+//=> 'int16array'
+
+kindOf(new Uint16Array());
+//=> 'uint16array'
+
+kindOf(new Int32Array());
+//=> 'int32array'
+
+kindOf(new Uint32Array());
+//=> 'uint32array'
+
+kindOf(new Float32Array());
+//=> 'float32array'
+
+kindOf(new Float64Array());
+//=> 'float64array'
 ```
 
 ## Related projects
