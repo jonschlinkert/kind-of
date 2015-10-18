@@ -133,6 +133,51 @@ describe('kindOf', function () {
         kindOf(Symbol('foo')).should.equal('symbol');
         kindOf(Symbol.prototype).should.equal('object');
       });
+
+      it('should work for Int8Array', function () {
+        var int8array = new Int8Array();
+        kindOf(int8array).should.equal('int8array');
+      });
+
+      it('should work for Uint8Array', function () {
+        var uint8array = new Uint8Array();
+        kindOf(uint8array).should.equal('uint8array');
+      });
+
+      it('should work for Uint8ClampedArray', function () {
+        var uint8clampedarray = new Uint8ClampedArray();
+        kindOf(uint8clampedarray).should.equal('uint8clampedarray');
+      });
+
+      it('should work for Int16Array', function () {
+        var int16array = new Int16Array();
+        kindOf(int16array).should.equal('int16array');
+      });
+
+      it('should work for Uint16Array', function () {
+        var uint16array = new Uint16Array();
+        kindOf(uint16array).should.equal('uint16array');
+      });
+
+      it('should work for Int32Array', function () {
+        var int32array = new Int32Array();
+        kindOf(int32array).should.equal('int32array');
+      });
+
+      it('should work for Uint32Array', function () {
+        var uint32array = new Uint32Array();
+        kindOf(uint32array).should.equal('uint32array');
+      });
+
+      it('should work for Float32Array', function () {
+        var float32array = new Float32Array();
+        kindOf(float32array).should.equal('float32array');
+      });
+
+      it('should work for Float64Array', function () {
+        var float64array = new Float64Array();
+        kindOf(float64array).should.equal('float64array');
+      });
     });
   }
 });
