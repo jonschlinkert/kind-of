@@ -5,9 +5,9 @@
  * Licensed under the MIT License
  */
 
-/* deps: mocha */
-var kindOf = require('./');
+require('mocha');
 require('should');
+var kindOf = require('./');
 
 var version = process.version.match(/^.(\d+)\.(\d+)/);
 var major = version[1];
