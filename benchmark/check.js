@@ -1,6 +1,6 @@
 'use strict';
 
-var chalk = require('chalk');
+var bold = require('ansi-bold');
 var path = require('path');
 var glob = require('glob');
 
@@ -17,6 +17,6 @@ glob.sync(__dirname + '/code/*.js').forEach(function (fp) {
   var name = path.basename(fp, path.extname(fp));
 
   fixtures.forEach(function (fixture) {
-    console.log(chalk.bold(name) + ':', fn.apply(null, require(fixture)));
+    console.log(bold(name) + ':', fn.apply(null, require(fixture)));
   });
 });
