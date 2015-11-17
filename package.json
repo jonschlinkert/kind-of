@@ -1,7 +1,7 @@
 {
   "name": "kind-of",
   "description": "Get the native type of a value.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "homepage": "https://github.com/jonschlinkert/kind-of",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/kind-of",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "prepublish": "browserify -o browser.js -e index.js -s index --bare && update"
+    "prepublish": "browserify -o browser.js -e index.js -s index --bare"
   },
   "dependencies": {
     "is-buffer": "^1.0.2"
