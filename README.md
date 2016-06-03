@@ -133,6 +133,12 @@ kindOf(new Float32Array());
 
 kindOf(new Float64Array());
 //=> 'float64array'
+
+kindOf(new ArrayBuffer());
+//=> 'arraybuffer'
+
+kindOf(new DataView(new ArrayBuffer()));
+//=> 'dataview'
 ```
 
 ## Benchmarks

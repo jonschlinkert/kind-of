@@ -180,6 +180,15 @@ describe('kindOf', function() {
         var float64array = new Float64Array();
         kindOf(float64array).should.equal('float64array');
       });
+      it('should work for ArrayBuffer', function() {
+        var arrayBuffer = new ArrayBuffer();
+        kindOf(arrayBuffer).should.equal('arraybuffer');
+      });
+      it('should work for DataView', function() {
+        var arrayBuffer = new ArrayBuffer();
+        var dataView = new DataView(arrayBuffer);
+        kindOf(dataView).should.equal('dataview');
+      });
     });
   }
 });
