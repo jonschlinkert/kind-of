@@ -1,6 +1,35 @@
 var isBuffer = require('is-buffer');
 var toString = Object.prototype.toString;
 
+// Prototype-less object (so lookups don't need to go up the prototype chain)
+var typeMap = Object.create(null);
+typeMap['[object RegExp]'] =  'regexp';
+typeMap['[object Date]'] =  'date';
+typeMap['[object Arguments]'] =  'arguments';
+
+// es6 =  Map; WeakMap; Set; WeakSet
+typeMap['[object Set]'] =  'set';
+typeMap['[object WeakSet]'] =  'weakset';
+typeMap['[object Map]'] =  'map';
+typeMap['[object WeakMap]'] =  'weakmap';
+typeMap['[object Symbol]'] =  'symbol';
+
+// typed arrays
+typeMap['[object Int8Array]'] =  'int8array';
+typeMap['[object Uint8Array]'] =  'uint8array';
+typeMap['[object Uint8ClampedArray]'] =  'uint8clampedarray';
+typeMap['[object Int16Array]'] =  'int16array';
+typeMap['[object Uint16Array]'] =  'uint16array';
+typeMap['[object Int32Array]'] =  'int32array';
+typeMap['[object Uint32Array]'] =  'uint32array';
+typeMap['[object Float32Array]'] =  'float32array';
+typeMap['[object Float64Array]'] =  'float64array';
+
+// structured data
+typeMap['[object ArrayBuffer]'] =  'arraybuffer';
+typeMap['[object DataView]'] =  'dataview';
+
+
 /**
  * Get the native `typeof` a value.
  *
@@ -44,68 +73,16 @@ module.exports = function kindOf(val) {
     return 'date';
   }
 
-  // other objects
-  var type = toString.call(val);
-
-  if (type === '[object RegExp]') {
-    return 'regexp';
-  }
-  if (type === '[object Date]') {
-    return 'date';
-  }
-  if (type === '[object Arguments]') {
-    return 'arguments';
-  }
-
   // buffer
   if (typeof Buffer !== 'undefined' && isBuffer(val)) {
     return 'buffer';
   }
 
-  // es6: Map, WeakMap, Set, WeakSet
-  if (type === '[object Set]') {
-    return 'set';
-  }
-  if (type === '[object WeakSet]') {
-    return 'weakset';
-  }
-  if (type === '[object Map]') {
-    return 'map';
-  }
-  if (type === '[object WeakMap]') {
-    return 'weakmap';
-  }
-  if (type === '[object Symbol]') {
-    return 'symbol';
-  }
+  // other objects
+  var type = toString.call(val);
 
-  // typed arrays
-  if (type === '[object Int8Array]') {
-    return 'int8array';
-  }
-  if (type === '[object Uint8Array]') {
-    return 'uint8array';
-  }
-  if (type === '[object Uint8ClampedArray]') {
-    return 'uint8clampedarray';
-  }
-  if (type === '[object Int16Array]') {
-    return 'int16array';
-  }
-  if (type === '[object Uint16Array]') {
-    return 'uint16array';
-  }
-  if (type === '[object Int32Array]') {
-    return 'int32array';
-  }
-  if (type === '[object Uint32Array]') {
-    return 'uint32array';
-  }
-  if (type === '[object Float32Array]') {
-    return 'float32array';
-  }
-  if (type === '[object Float64Array]') {
-    return 'float64array';
+  if (typeMap[type]) {
+    return typeMap[type];
   }
 
   // must be a plain object
