@@ -79,6 +79,10 @@ describe('kindOf', function() {
       assert.equal(kindOf(function() {}), 'function');
       assert.equal(kindOf(new Function()), 'function');
     });
+
+    it('should work for Errors', function() {
+      assert.equal(kindOf(new Error('')), 'error');
+    });
   });
 
   if (major > 0 || minor > 11) {
