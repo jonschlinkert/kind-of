@@ -4,7 +4,7 @@ require('mocha');
 var assert = require('assert');
 var kindOf = require('..');
 
-var version = process.version.match(/^.(\d+)\.(\d+)/);
+var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
 var major = version[1];
 var minor = version[2];
 
@@ -85,7 +85,7 @@ describe('kindOf', function() {
     });
   });
 
-  if (major > 0 || minor > 11) {
+  if (major >= 5) {
     require('./es6')();
   }
 });
