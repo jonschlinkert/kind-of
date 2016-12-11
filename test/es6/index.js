@@ -6,6 +6,17 @@ var kindOf = require('../..');
 
 module.exports = function() {
   describe('es6 features', function() {
+    it('should work for resolved promises', function() {
+      var promise = Promise.resolve(123);
+      assert.strictEqual(kindOf(promise), 'promise');
+    });
+
+    it('should work for rejected promises', function() {
+      var promise = Promise.reject(new Error('foo bar'));
+      promise.catch(function() {})
+      assert.strictEqual(kindOf(promise), 'promise');
+    });
+
     it('should work for generators', function() {
       var gen = function * named() {return true;};
       assert.equal(kindOf(gen), 'function');
