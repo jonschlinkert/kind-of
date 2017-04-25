@@ -7,6 +7,8 @@
   "contributors": [
     "David Fox-Powell <dtothefp@gmail.com> (https://dtothefp.github.io/me)",
     "Jon Schlinkert <jon.schlinkert@sellside.com> (http://twitter.com/jonschlinkert)",
+    "Ken Sheedlo (kensheedlo.com)",
+    "laggingreflex (https://github.com/laggingreflex)",
     "Miguel Mota <miguel@mota.email> (https://miguelmota.com)",
     "Peter deHaan (http://about.me/peterdehaan)"
   ],
@@ -27,15 +29,14 @@
     "prepublish": "browserify -o browser.js -e index.js -s index --bare"
   },
   "dependencies": {
-    "is-buffer": "^1.0.2"
+    "is-buffer": "^1.1.5"
   },
   "devDependencies": {
     "ansi-bold": "^0.1.1",
-    "benchmarked": "^0.2.5",
-    "browserify": "^13.1.0",
-    "glob": "^7.0.5",
-    "gulp-format-md": "^0.1.9",
-    "mocha": "^2.5.3",
+    "benchmarked": "^1.0.0",
+    "glob": "^7.1.1",
+    "gulp-format-md": "^0.1.12",
+    "mocha": "^3.3.0",
     "type-of": "^2.0.1",
     "typeof": "^1.0.0"
   },
