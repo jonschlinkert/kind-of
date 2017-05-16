@@ -85,7 +85,7 @@ describe('kindOf', function() {
     });
   });
 
-  if (major >= 5) {
+  if (major > 5) {
     require('./es6')();
   }
 });
