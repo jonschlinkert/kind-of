@@ -16,6 +16,7 @@
   "devDependencies": {
     "ansi-bold": "^0.1.1",
     "benchmarked": "^1.0.0",
+    "browserify": "^14.3.0",
     "glob": "^7.1.1",
     "gulp-format-md": "^0.1.12",
     "mocha": "^3.3.0",
@@ -45,13 +46,13 @@
     "typeof",
     "types"
   ],
-  "version": "3.1.0",
+  "version": "3.2.0",
   "contributors": [
-    "David Fox-Powell <dtothefp@gmail.com> (https://dtothefp.github.io/me)",
-    "Jon Schlinkert <jon.schlinkert@sellside.com> (http://twitter.com/jonschlinkert)",
+    "David Fox-Powell (https://dtothefp.github.io/me)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
     "Ken Sheedlo (kensheedlo.com)",
     "laggingreflex (https://github.com/laggingreflex)",
-    "Miguel Mota <miguel@mota.email> (https://miguelmota.com)",
+    "Miguel Mota (https://miguelmota.com)",
     "Peter deHaan (http://about.me/peterdehaan)"
   ],
   "bugs": {
