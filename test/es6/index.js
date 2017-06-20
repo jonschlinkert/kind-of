@@ -13,17 +13,19 @@ module.exports = function() {
 
     it('should work for rejected promises', function() {
       var promise = Promise.reject(new Error('foo bar'));
-      promise.catch(function() {})
+      promise.catch(function() {});
       assert.strictEqual(kindOf(promise), 'promise');
     });
 
     it('should work for generators', function() {
-      var gen = function * named() {return true;};
+      var gen = function * named() {
+        return true;
+      };
       assert.equal(kindOf(gen), 'function');
     });
 
     it('should work for template strings', function() {
-      var str = `Welcome buddy`;
+      var str = 'Welcome buddy';
       assert.equal(kindOf(str), 'string');
     });
 
@@ -57,6 +59,16 @@ module.exports = function() {
       assert.equal(kindOf(weakset.add), 'function');
       assert.equal(kindOf(weakset.set), 'undefined');
       assert.equal(kindOf(weakset.get), 'undefined');
+    });
+
+    it('should work for Set Iterator', function() {
+      var set = new Set().values();
+      assert.equal(kindOf(set), 'setiterator');
+    });
+
+    it('should work for Map Iterator', function() {
+      var map = new Map().values();
+      assert.equal(kindOf(map), 'mapiterator');
     });
 
     it('should work for Symbol', function() {
