@@ -1,5 +1,4 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.index = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var isBuffer = require('is-buffer');
 var toString = Object.prototype.toString;
 
 /**
@@ -10,8 +9,10 @@ var toString = Object.prototype.toString;
  */
 
 module.exports = function kindOf(val) {
+  var type = typeof val;
+
   // primitivies
-  if (typeof val === 'undefined') {
+  if (type === 'undefined') {
     return 'undefined';
   }
   if (val === null) {
@@ -20,15 +21,18 @@ module.exports = function kindOf(val) {
   if (val === true || val === false || val instanceof Boolean) {
     return 'boolean';
   }
-  if (typeof val === 'string' || val instanceof String) {
+  if (type === 'string' || val instanceof String) {
     return 'string';
   }
-  if (typeof val === 'number' || val instanceof Number) {
+  if (type === 'number' || val instanceof Number) {
     return 'number';
   }
 
   // functions
-  if (typeof val === 'function' || val instanceof Function) {
+  if (type === 'function' || val instanceof Function) {
+    if (val.constructor.name.slice(0, 9) === 'Generator') {
+      return 'generatorfunction';
+    }
     return 'function';
   }
 
@@ -46,7 +50,7 @@ module.exports = function kindOf(val) {
   }
 
   // other objects
-  var type = toString.call(val);
+  type = toString.call(val);
 
   if (type === '[object RegExp]') {
     return 'regexp';
@@ -85,6 +89,12 @@ module.exports = function kindOf(val) {
   if (type === '[object Symbol]') {
     return 'symbol';
   }
+  if (type === '[object Map Iterator]') {
+    return 'mapiterator';
+  }
+  if (type === '[object Set Iterator]') {
+    return 'setiterator';
+  }
 
   // typed arrays
   if (type === '[object Int8Array]') {
@@ -119,27 +129,15 @@ module.exports = function kindOf(val) {
   return 'object';
 };
 
-},{"is-buffer":2}],2:[function(require,module,exports){
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
- * @license  MIT
+/**
+ * If you need to support Safari 5-7 (8-10 yr-old browser),
+ * take a look at https://github.com/feross/is-buffer
  */
 
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+function isBuffer(val) {
+  return val.constructor
+    && typeof val.constructor.isBuffer === 'function'
+    && val.constructor.isBuffer(val);
 }
 
 },{}]},{},[1])(1)
