@@ -30,13 +30,9 @@
     "test": "mocha",
     "prepublish": "browserify -o browser.js -e index.js -s index --bare"
   },
-  "dependencies": {
-    "is-buffer": "^1.1.5"
-  },
   "devDependencies": {
     "ansi-bold": "^0.1.1",
     "benchmarked": "^1.1.1",
-    "browserify": "^14.4.0",
     "gulp-format-md": "^0.1.12",
     "matched": "^0.4.4",
     "mocha": "^3.4.2",
@@ -86,7 +82,9 @@
       "reflinks": true
     },
     "reflinks": [
-      "verb"
+      "verb",
+      "type-of",
+      "typeof"
     ]
   }
 }

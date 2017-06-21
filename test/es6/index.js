@@ -21,13 +21,12 @@ module.exports = function() {
       var gen = function * named() {
         return true;
       };
-      assert.equal(kindOf(gen), 'function');
+      assert.equal(kindOf(gen), 'generatorfunction');
     });
 
     it('should work for template strings', function() {
       /* eslint quotes: 0 */
-      var str = `Welcome buddy`;
-      assert.equal(kindOf(str), 'string');
+      assert.equal(kindOf(`Welcome buddy`), 'string');
     });
 
     it('should work for Map', function() {
