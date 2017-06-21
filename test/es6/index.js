@@ -25,7 +25,8 @@ module.exports = function() {
     });
 
     it('should work for template strings', function() {
-      var str = 'Welcome buddy';
+      /* eslint quotes: 0 */
+      var str = `Welcome buddy`;
       assert.equal(kindOf(str), 'string');
     });
 

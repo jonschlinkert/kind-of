@@ -6,9 +6,10 @@ var kindOf = require('..');
 
 var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
 var major = version[1];
-var minor = version[2];
 
 describe('kindOf', function() {
+  /* eslint no-new-wrappers: 0 */
+
   describe('null and undefined', function() {
     it('should work for undefined', function() {
       assert.equal(kindOf(undefined), 'undefined');
@@ -40,8 +41,7 @@ describe('kindOf', function() {
   describe('objects', function() {
     it('should work for arguments', function() {
       (function() {
-      assert.equal(kindOf(arguments), 'arguments');
-        return;
+        assert.equal(kindOf(arguments), 'arguments');
       })();
     });
 
@@ -65,17 +65,19 @@ describe('kindOf', function() {
     });
 
     it('should work for arrays', function() {
+      /* eslint no-array-constructor: 0 */
       assert.equal(kindOf([]), 'array');
       assert.equal(kindOf([1, 2, 3]), 'array');
       assert.equal(kindOf(new Array()), 'array');
     });
 
     it('should work for regular expressions', function() {
-      assert.equal(kindOf(/[\s\S]+/), 'regexp');
-      assert.equal(kindOf(new RegExp('^' + 'foo$')), 'regexp');
+      assert.equal(kindOf(/./), 'regexp');
+      assert.equal(kindOf(new RegExp('^foo$')), 'regexp');
     });
 
     it('should work for functions', function() {
+      /* eslint no-new-func: 0 */
       assert.equal(kindOf(function() {}), 'function');
       assert.equal(kindOf(new Function()), 'function');
     });
