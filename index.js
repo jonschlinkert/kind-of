@@ -88,13 +88,20 @@ module.exports = function kindOf(val) {
   if (type === '[object Symbol]') {
     return 'symbol';
   }
+  
   if (type === '[object Map Iterator]') {
     return 'mapiterator';
   }
   if (type === '[object Set Iterator]') {
     return 'setiterator';
   }
-
+  if (type === '[object String Iterator]') {
+    return 'stringiterator';
+  }
+  if (type === '[object Array Iterator]') {
+    return 'arrayiterator';
+  }
+  
   // typed arrays
   if (type === '[object Int8Array]') {
     return 'int8array';

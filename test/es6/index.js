@@ -62,15 +62,22 @@ module.exports = function() {
     });
 
     it('should work for Set Iterator', function() {
-      var set = new Set().values();
-      assert.equal(kindOf(set), 'setiterator');
+      var SetValuesIterator = new Set().values();
+      assert.equal(kindOf(SetValuesIterator), 'setiterator');
     });
-
     it('should work for Map Iterator', function() {
-      var map = new Map().values();
-      assert.equal(kindOf(map), 'mapiterator');
+      var MapValuesIterator = new Map().values();
+      assert.equal(kindOf(MapValuesIterator), 'mapiterator');
     });
-
+    it('should work for Array Iterator', function() {
+      var ArrayEntriesIterator = [].entries();
+      assert.equal(kindOf(ArrayEntriesIterator), 'arrayiterator');
+    })
+    it('should work for String Iterator', function() {
+      var StringCharIterator = ''[Symbol.iterator]();
+      assert.equal(kindOf(StringCharIterator), 'stringiterator');
+    })
+    
     it('should work for Symbol', function() {
       assert.equal(kindOf(Symbol('foo')), 'symbol');
       assert.equal(kindOf(Symbol.prototype), 'symbol');
