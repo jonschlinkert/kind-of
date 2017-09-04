@@ -17,6 +17,7 @@ glob.sync(__dirname + '/code/*.js').forEach(function (fp) {
   var name = path.basename(fp, path.extname(fp));
 
   fixtures.forEach(function (fixture) {
-    console.log(bold(name) + ':', fn.apply(null, require(fixture)));
+    var stem = path.basename(fixture, path.extname(fixture));
+    console.log(bold(name) + `: ${stem}`, fn.apply(null, require(fixture)));
   });
 });

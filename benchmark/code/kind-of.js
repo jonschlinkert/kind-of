@@ -1,7 +1,4 @@
-/**
- * http://github.com/CodingFu/typeof
- */
-var typeOf = require('typeof');
+var typeOf = require('../..');
 
 module.exports = function(args) {
   var arg = args[0];
