@@ -1,4 +1,5 @@
-module.exports = function typeOf(val) {
+module.exports = function typeOf(arr) {
+  var val = arr[0];
   if (val === null) return 'null';
 
   if (val === undefined) {
