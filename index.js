@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('.dist/commonjs');
+module.exports = require('./dist/commonjs');
