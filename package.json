@@ -36,6 +36,7 @@
     "gulp-format-md": "^0.1.12",
     "matched": "^0.4.4",
     "mocha": "^3.4.2",
+    "rollup": "^0.50.0",
     "type-of": "^2.0.1",
     "typeof": "^1.0.0"
   },
