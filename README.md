@@ -51,7 +51,7 @@ import kindOf from 'kind-of';
 import { kindOf } from 'kind-of'
 ```
 
-### browser
+> browser
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/kind-of"></script>
