@@ -1,7 +1,6 @@
 var re = /^\[object (\w+)\]$/;
 
-module.exports = function typeOf(arr) {
-  var val = arr[0];
+module.exports = function typeOf(val) {
   if (val === null) {
     return 'null';
   }

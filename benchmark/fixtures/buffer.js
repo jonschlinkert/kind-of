@@ -1,1 +1,1 @@
-module.exports = [new Buffer('')];
+module.exports = [new Buffer('foo')];

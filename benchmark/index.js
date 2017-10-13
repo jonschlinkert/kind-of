@@ -1,11 +1,15 @@
 'use strict';
 
-var Suite = require('benchmarked');
-var suite = new Suite({
-  result: false,
-  fixtures: ['fixtures/*.js'],
-  code: 'code/{kind-of,lib-*}.js',
-  cwd: __dirname
-});
+var path = require('path');
+var suite = require('benchmarked');
+var write = require('write');
 
-suite.run();
+suite.run({
+  fixtures: 'fixtures/*.js',
+  code: 'code/{kind-of,lib-*}.js'
+})
+  .then(function(stats) {
+    write.sync(path.join(__dirname, 'stats.json'), JSON.stringify(stats, null, 2))
+    write.sync(path.join(__dirname, 'stats.md'), suite.render(stats));
+  })
+  .catch(console.error);

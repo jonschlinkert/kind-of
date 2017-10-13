@@ -1,4 +1,3 @@
-module.exports = function typeOf(arr) {
-  var val = arr[0];
+module.exports = function typeOf(val) {
   return {}.toString.call(val).slice(8, -1).toLowerCase();
 };
