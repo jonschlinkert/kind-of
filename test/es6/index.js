@@ -17,16 +17,24 @@ module.exports = function() {
       assert.strictEqual(kindOf(promise), 'promise');
     });
 
-    it('should work for generators', function() {
+    it('should work for generator functions', function() {
       var gen = function * named() {
         return true;
       };
       assert.equal(kindOf(gen), 'generatorfunction');
     });
 
+    it('should work for generator objects', function() {
+      var gen = function * named() {
+        return true;
+      };
+      assert.equal(kindOf(gen()), 'generator');
+    });
+
     it('should work for template strings', function() {
       /* eslint quotes: 0 */
-      assert.equal(kindOf(`Welcome buddy`), 'string');
+      var name = 'Foo';
+      assert.equal(kindOf(`Welcome ${name} buddy`), 'string');
     });
 
     it('should work for Map', function() {
@@ -77,7 +85,7 @@ module.exports = function() {
       var StringCharIterator = ''[Symbol.iterator]();
       assert.equal(kindOf(StringCharIterator), 'stringiterator');
     })
-    
+
     it('should work for Symbol', function() {
       assert.equal(kindOf(Symbol('foo')), 'symbol');
       assert.equal(kindOf(Symbol.prototype), 'symbol');

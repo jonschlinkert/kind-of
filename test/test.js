@@ -53,11 +53,13 @@ describe('kindOf', function() {
       function Test() {}
       var instance = new Test();
       var literal = {};
-      var create = Object.create(null);
+      var createdNull = Object.create(null);
+      var createdObj = Object.create({});
 
       assert.equal(kindOf(instance), 'object');
       assert.equal(kindOf(literal), 'object');
-      assert.equal(kindOf(create), 'object');
+      assert.equal(kindOf(createdNull), 'object');
+      assert.equal(kindOf(createdObj), 'object');
     });
 
     it('should work for dates', function() {
