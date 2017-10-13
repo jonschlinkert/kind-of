@@ -1,18 +1,18 @@
 {
   "name": "kind-of",
   "description": "Get the native type of a value.",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "homepage": "https://github.com/jonschlinkert/kind-of",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
-    "Charlike Mike Reagent (https://i.am.charlike.online)",
     "David Fox-Powell (https://dtothefp.github.io/me)",
     "James (https://twitter.com/aretecode)",
     "Jon Schlinkert (http://twitter.com/jonschlinkert)",
     "Ken Sheedlo (kensheedlo.com)",
     "laggingreflex (https://github.com/laggingreflex)",
     "Miguel Mota (https://miguelmota.com)",
-    "Peter deHaan (http://about.me/peterdehaan)"
+    "Peter deHaan (http://about.me/peterdehaan)",
+    "tunnckoCore (https://i.am.charlike.online)"
   ],
   "repository": "jonschlinkert/kind-of",
   "bugs": {
