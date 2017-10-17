@@ -1,1 +1,3 @@
-export default function kindOf(val?: any): string;
+declare function kindOf(val?: any): string;
+declare namespace kindOf {}
+export = kindOf
