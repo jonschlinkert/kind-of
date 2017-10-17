@@ -28,7 +28,10 @@
   },
   "scripts": {
     "test": "mocha",
-    "prepublish": "browserify -o browser.js -e index.js -s index --bare"
+    "commonjs": "rollup src/index.js --o dist/commonjs/index.js --f cjs",
+    "umd": "rollup src/index.js --o dist/kindOf.js --name kindOf --f umd",
+    "es2015": "rollup src/index.js --o dist/module/index.js --f es",
+    "build": "npm run commonjs && npm run umd && npm run es2015"
   },
   "devDependencies": {
     "benchmarked": "^2.0.0",
