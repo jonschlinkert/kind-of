@@ -44,7 +44,7 @@ import kindOf from 'kind-of';
 > typescript
 
 ```js
-import kindOf from 'kind-of';
+import * as kindOf from 'kind-of';
 ```
 
 > browser
