@@ -22,7 +22,11 @@
   "files": [
     "index.js"
   ],
-  "main": "index.js",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "unpkg": "dist/kindOf.js",
+  "jsdelivr": "dist/kindOf.js",
+  "typings": "types/index.d.ts",
   "engines": {
     "node": ">=0.10.0"
   },
