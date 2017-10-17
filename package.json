@@ -34,6 +34,7 @@
     "benchmarked": "^2.0.0",
     "gulp-format-md": "^1.0.0",
     "mocha": "^4.0.1",
+    "rollup": "^0.50.0",
     "write": "^1.0.3"
   },
   "keywords": [
