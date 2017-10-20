@@ -20,21 +20,31 @@
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "index.js",
+    "dist",
+    "types"
   ],
-  "main": "index.js",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "unpkg": "dist/kindOf.js",
+  "jsdelivr": "dist/kindOf.js",
+  "typings": "types/index.d.ts",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
     "test": "mocha",
-    "prepublish": "browserify -o browser.js -e index.js -s index --bare"
+    "commonjs": "rollup src/index.js --o dist/commonjs/index.js --f cjs",
+    "umd": "rollup src/index.js --o dist/kindOf.js --name kindOf --f umd",
+    "es2015": "rollup src/index.js --o dist/module/index.js --f es",
+    "build": "npm run commonjs && npm run umd && npm run es2015",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "benchmarked": "^2.0.0",
-    "browserify": "^14.4.0",
     "gulp-format-md": "^1.0.0",
     "mocha": "^4.0.1",
+    "rollup": "^0.50.0",
     "write": "^1.0.3"
   },
   "keywords": [
