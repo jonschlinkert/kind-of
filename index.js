@@ -13,12 +13,7 @@ module.exports = function kindOf(val) {
     return isGeneratorFn(val) ? 'generatorfunction' : 'function';
   }
 
-  if (Array.isArray) {
-    if (Array.isArray(val)) return 'array';
-  } else if (val instanceof Array) {
-    return 'array';
-  }
-
+  if (isArray(val)) return 'array';
   if (isBuffer(val)) return 'buffer';
   if (isArguments(val)) return 'arguments';
   if (isDate(val)) return 'date';
@@ -74,9 +69,13 @@ function ctorName(val) {
   return val.constructor ? val.constructor.name : null;
 }
 
+function isArray(val) {
+  if (Array.isArray) return Array.isArray(val);
+  return val instanceof Array;
+}
+
 function isError(val) {
-  return typeof val.message === 'string' && val.constructor
-    && typeof val.constructor.stackTraceLimit === 'number';
+  return val instanceof Error || (typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number');
 }
 
 function isDate(val) {
