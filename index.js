@@ -10,7 +10,13 @@ module.exports = function kindOf(val) {
   if (type === 'number') return 'number';
   if (type === 'symbol') return 'symbol';
   if (type === 'function') {
-    return isGeneratorFn(val) ? 'generatorfunction' : 'function';
+    if (isGeneratorFn(val)) {
+      return 'generatorfunction'
+    } else if (isAsyncFn(val)) {
+      return 'asyncfunction'
+    } else {
+      return 'function'
+    }
   }
 
   if (isArray(val)) return 'array';
@@ -114,6 +120,10 @@ function isArguments(val) {
     }
   }
   return false;
+}
+
+function isAsyncFn(val) {
+  return val.constructor.name === 'AsyncFunction';
 }
 
 /**
