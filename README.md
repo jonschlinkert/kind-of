@@ -84,7 +84,7 @@ kindOf(function () {});
 kindOf(function * () {});
 //=> 'generatorfunction'
 
-kindOf(async function * () {});
+kindOf(async function () {});
 //=> 'asyncfunction'
 
 kindOf(Symbol('str'));
