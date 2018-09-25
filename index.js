@@ -1,23 +1,26 @@
 var toString = Object.prototype.toString,
   slice = Array.prototype.slice;
 
-function kindOf(val) {
-  var hooks = slice.call(arguments, 1);
-
+function kindOf(val, arg) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
   
-  for(var value, i = 0, len = hooks.length; i < len; ++i) {
-    value = hooks[i].call(this, val);
+  // Only process hooks when `arg` is valid for performance reasons.
+  if(arg) {
+    var hooks = slice.call(arguments, 1);
+    
+    for(var value, i = 0, len = hooks.length; i < len; ++i) {
+      value = hooks[i].call(this, val);
 
-    if(typeof hooks[i] !== 'function') {
-      throw new TypeError('Expected a function.');
-    }
+      if(typeof hooks[i] !== 'function') {
+        throw new TypeError('Expected a function.');
+      }
 
-    if(typeof value === 'string') {
-      return value;
-    } else if(value === false) {
-      break;
+      if(typeof value === 'string') {
+        return value;
+      } else if(value === false) {
+        break;
+      }
     }
   }
 
