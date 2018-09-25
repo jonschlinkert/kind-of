@@ -1,18 +1,24 @@
 var toString = Object.prototype.toString,
-  hooks = [];
+  slice = Array.prototype.slice;
 
 function kindOf(val) {
+  var hooks = slice.call(arguments, 1);
+
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
+  
+  for(var value, i = 0, len = hooks.length; i < len; ++i) {
+    value = hooks[i].call(this, val);
 
-  for(var index = 0, len = hooks.length; index < len; ++index) {
-    var item = hooks[index],
-      value = item(val);
+    if(typeof hooks[i] !== 'function') {
+      throw new TypeError('Expected a function.');
+    }
 
-      // Ignore non-string values.
-      if(typeof value === 'string') {
-        return value;
-      }
+    if(typeof value === 'string') {
+      return value;
+    } else if(value === false) {
+      break;
+    }
   }
 
   var type = typeof val;
@@ -139,15 +145,17 @@ function isBuffer(val) {
   return false;
 }
 
-function register(hook) {
-  if(kindOf(hook) !== 'function') {
-    throw new TypeError('Expected a function.');
-  }
+/**
+ * Allows providing hooks ahead
+ * of calling `kindOf`.
+ */
+function provide() {
+  var all = arguments;
 
-  hooks.push(hook);
-  return hook;
+  return function (val) {
+    return kindOf.apply(this, [val].concat(all));
+  }
 }
 
-kindOf.register = register;
-kindOf.hooks = hooks;
+kindOf.provide = provide;
 module.exports = kindOf;

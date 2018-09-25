@@ -3,6 +3,7 @@
 require('mocha');
 var assert = require('assert');
 var kindOf = require('..');
+var stub;
 
 var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
 var major = version[1];
@@ -89,19 +90,16 @@ describe('kindOf', function() {
     });
 
     it('should work with hooks', function () {
-      kindOf.register(function () {
+      function stub() {
         return 'valid';
-      });
-
-      assert.equal(kindOf(2), 'valid');
+      }
+      
+      assert.equal(kindOf(2, stub), 'valid');
     });
 
     it('should not call hooks when passed null of undefined', function () {
       assert.notStrictEqual(kindOf(2), 'valid');
     });
-
-    // Reset the hooks.
-    kindOf.hooks = [];
   });
 
   if (major > 5) {
