@@ -87,6 +87,18 @@ describe('kindOf', function() {
     it('should work for Errors', function() {
       assert.equal(kindOf(new Error('')), 'error');
     });
+
+    it('should work with hooks', function () {
+      kindOf.register(function () {
+        return 'valid';
+      });
+
+      assert.equal(kindOf(2), 'valid');
+    });
+
+    it('should not call hooks when passed null of undefined', function () {
+      assert.notStrictEqual(kindOf(2), 'valid');
+    });
   });
 
   if (major > 5) {
