@@ -5,8 +5,8 @@ function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
-  for(let index = 0, len = hooks.length; index < len; ++index) {
-    let item = hooks[index],
+  for(var index = 0, len = hooks.length; index < len; ++index) {
+    var item = hooks[index],
       value = item(val);
 
       // Ignore non-string values.
