@@ -99,6 +99,9 @@ describe('kindOf', function() {
     it('should not call hooks when passed null of undefined', function () {
       assert.notStrictEqual(kindOf(2), 'valid');
     });
+
+    // Reset the hooks.
+    kindOf.hooks = [];
   });
 
   if (major > 5) {
