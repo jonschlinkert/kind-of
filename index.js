@@ -1,8 +1,19 @@
-var toString = Object.prototype.toString;
+var toString = Object.prototype.toString,
+  hooks = [];
 
-module.exports = function kindOf(val) {
+function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
+
+  for(let index = 0, len = hooks.length; index < len; ++index) {
+    let item = hooks[index],
+      value = item(val);
+
+      // Ignore non-string values.
+      if(typeof value === 'string') {
+        return value;
+      }
+  }
 
   var type = typeof val;
   if (type === 'boolean') return 'boolean';
@@ -127,3 +138,16 @@ function isBuffer(val) {
   }
   return false;
 }
+
+function register(hook) {
+  if(kindOf(hook) !== 'function') {
+    throw new TypeError('Expected a function.');
+  }
+
+  hooks.push(hook);
+  return hook;
+}
+
+kindOf.register = register;
+kindOf.hooks = hooks;
+module.exports = kindOf;
