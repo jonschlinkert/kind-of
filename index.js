@@ -42,9 +42,6 @@ module.exports = function kindOf(val) {
     case 'Uint32Array': return 'uint32array';
     case 'Float32Array': return 'float32array';
     case 'Float64Array': return 'float64array';
-
-    // Data views
-    case 'DataView': return 'dataview';
   }
 
   if (isGeneratorObj(val)) {
