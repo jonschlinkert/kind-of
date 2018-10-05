@@ -1,5 +1,6 @@
 var toString = Object.prototype.toString,
-  slice = Array.prototype.slice;
+  slice = Array.prototype.slice,
+  isBuffer;
 
 function kindOf(val, arg) {
   if (val === void 0) return 'undefined';
@@ -34,7 +35,7 @@ function kindOf(val, arg) {
   }
 
   if (isArray(val)) return 'array';
-  if (isBuffer(val)) return 'buffer';
+  if (loadisBuffer(), isBuffer(val)) return 'buffer';
   if (isArguments(val)) return 'arguments';
   if (isDate(val)) return 'date';
   if (isError(val)) return 'error';
@@ -105,6 +106,12 @@ function isDate(val) {
     && typeof val.setDate === 'function';
 }
 
+function loadIsBuffer() {
+  if(!isBuffer) {
+    isBuffer = require('is-buffer');
+  }
+}
+
 function isRegexp(val) {
   if (val instanceof RegExp) return true;
   return typeof val.flags === 'string'
@@ -132,18 +139,6 @@ function isArguments(val) {
     if (err.message.indexOf('callee') !== -1) {
       return true;
     }
-  }
-  return false;
-}
-
-/**
- * If you need to support Safari 5-7 (8-10 yr-old browser),
- * take a look at https://github.com/feross/is-buffer
- */
-
-function isBuffer(val) {
-  if (val.constructor && typeof val.constructor.isBuffer === 'function') {
-    return val.constructor.isBuffer(val);
   }
   return false;
 }
