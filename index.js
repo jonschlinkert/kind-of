@@ -35,7 +35,7 @@ function kindOf(val, arg) {
   }
 
   if (isArray(val)) return 'array';
-  if (loadisBuffer(), isBuffer(val)) return 'buffer';
+  if (loadIsBuffer(), isBuffer(val)) return 'buffer';
   if (isArguments(val)) return 'arguments';
   if (isDate(val)) return 'date';
   if (isError(val)) return 'error';
