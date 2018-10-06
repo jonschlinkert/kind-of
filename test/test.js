@@ -7,8 +7,33 @@ var stub;
 
 var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
 var major = version[1];
+var hookFunction;
 
 describe('kindOf', function() {
+  describe('hooks', function () {
+    it('should add the hook with .register', function () {
+      kindOf.register(hookFunction = function (val) {
+        if(typeof val === 'string') {
+          return 'a string';
+        } else {
+          return 'a value';
+        }
+      });
+
+      assert.equal(kindOf('string'), 'a string');
+    });
+
+    it('should call hooks if val is undef or null', function () {
+      assert.equal(kindOf(undefined), 'a value');
+      assert.equal(kindOf(null), 'a value');
+    });
+
+    it('should remove the hook with .unregister', function () {
+      kindOf.unregister(hookFunction);
+      assert.equal(kindOf('string'), 'string');
+    });
+  });
+
   /* eslint no-new-wrappers: 0 */
 
   describe('null and undefined', function() {
@@ -87,18 +112,6 @@ describe('kindOf', function() {
 
     it('should work for Errors', function() {
       assert.equal(kindOf(new Error('')), 'error');
-    });
-
-    it('should work with hooks', function () {
-      function stub() {
-        return 'valid';
-      }
-      
-      assert.equal(kindOf(2, stub), 'valid');
-    });
-
-    it('should not call hooks when passed null of undefined', function () {
-      assert.notStrictEqual(kindOf(2), 'valid');
     });
   });
 

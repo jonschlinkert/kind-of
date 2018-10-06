@@ -1,29 +1,37 @@
 var toString = Object.prototype.toString,
   slice = Array.prototype.slice,
-  isBuffer;
+  isBuffer,
+  hooks = [];
 
-function kindOf(val, arg) {
-  if (val === void 0) return 'undefined';
-  if (val === null) return 'null';
-  
-  // Only process hooks when `arg` is valid for performance reasons.
-  if(arg) {
-    var hooks = slice.call(arguments, 1);
-    
-    for(var value, i = 0, len = hooks.length; i < len; ++i) {
-      value = hooks[i].call(this, val);
+function isUndefined(val) {
+  return val == null && val !== null;
+}
 
-      if(typeof hooks[i] !== 'function') {
-        throw new TypeError('Expected a function.');
-      }
+function emitHooks(val) {
+  for(var index = 0, length = hooks.length; index < length; ++index) {
+    var hookValue = hooks[index](val, index, length);
 
-      if(typeof value === 'string') {
-        return value;
-      } else if(value === false) {
-        break;
-      }
+    if(hookValue === false) {
+      break;
+    }
+
+    // Check for undefined.
+    if(!isUndefined(hookValue)) {
+      return hookValue;
     }
   }
+}
+
+function kindOf(val) {
+  var hooksValue = emitHooks(val);
+
+  // Check for undefined.
+  if(!isUndefined(hooksValue)) {
+    return hooksValue;
+  }
+
+  if (isUndefined(val)) return 'undefined';
+  if (val === null) return 'null';
 
   var type = typeof val;
   if (type === 'boolean') return 'boolean';
@@ -143,17 +151,26 @@ function isArguments(val) {
   return false;
 }
 
-/**
- * Allows providing hooks ahead
- * of calling `kindOf`.
- */
-function provide() {
-  var all = arguments;
+function register() {
+  hooks.push.apply(hooks, arguments);
+  return hooks;
+}
 
-  return function (val) {
-    return kindOf.apply(this, [val].concat(all));
+function clear() {
+  hooks.splice(0, hooks.length);
+  return hooks;
+}
+
+function unregister(func) {
+  for(var index = 0, length = hooks.length; index < length; ++index) {
+    if(hooks[index] === func) {
+      hooks.splice(index, 1);
+    }
   }
 }
 
-kindOf.provide = provide;
+kindOf.register = register;
+kindOf.hooks = hooks;
+kindOf.unregister = unregister;
+kindOf.clearHooks = clear;
 module.exports = kindOf;
