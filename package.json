@@ -12,7 +12,8 @@
     "laggingreflex (https://github.com/laggingreflex)",
     "Miguel Mota (https://miguelmota.com)",
     "Peter deHaan (http://about.me/peterdehaan)",
-    "tunnckoCore (https://i.am.charlike.online)"
+    "tunnckoCore (https://i.am.charlike.online)",
+    "Stephen Murphy (https://github.com/Stephen-Murphy)"
   ],
   "repository": "jonschlinkert/kind-of",
   "bugs": {
@@ -20,7 +21,8 @@
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "main": "index.js",
   "engines": {
