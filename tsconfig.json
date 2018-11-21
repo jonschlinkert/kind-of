@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "inlineSourceMap": false,
+        "sourceMap": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "declaration": true,
+        "declarationDir": "./test/typescript",
+        "outDir": "./test/typescript",
+        "baseUrl": ".",
+        "lib": [
+            "es7",
+            "dom"
+        ]
+    },
+    "files": [
+        "./index.d.ts",
+        "./test/typescript/index.ts",
+    ],
+    "compileOnSave": false,
+    "buildOnSave": false
+}

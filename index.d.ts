@@ -9,42 +9,46 @@ declare type RegExpLike = {
     multiline: boolean;
     global: boolean;
 };
-declare function kindOf(val: undefined): 'undefined';
-declare function kindOf(val: null): 'null';
-declare function kindOf(val: boolean | Boolean): 'boolean';
-declare function kindOf(val: string | String): 'string';
-declare function kindOf(val: number | Number): 'number';
-declare function kindOf(val: symbol): 'symbol';
-declare function kindOf(val: IterableIterator<any>): 'mapiterator' | 'setiterator' | 'stringiterator' | 'arrayiterator';
-declare function kindOf(val: (...args: any[]) => IterableIterator<any>): 'generatorfunction';
-declare function kindOf(val: Function): 'function';
-declare function kindOf(val: Array<any>): 'array';
-declare function kindOf(val: Date | DateLike): 'date';
-declare function kindOf(val: Buffer): 'buffer';
-declare function kindOf(val: Error): 'error';
-declare function kindOf(val: RegExp | RegExpLike): 'regexp';
-declare function kindOf(val: Promise<any>): 'promise';
-declare function kindOf<T extends object, U extends any>(val: WeakMap<T, U>): 'weakmap';
-declare function kindOf<T extends object>(val: WeakSet<T>): 'weakset';
-declare function kindOf<T extends any, U extends any>(val: Map<T, U>): 'map';
-declare function kindOf<T extends any>(val: Set<T>): 'set';
-declare function kindOf(val: Int8Array): 'int8array';
-declare function kindOf(val: Uint8Array): 'uint8array';
-declare function kindOf(val: Uint8ClampedArray): 'uint8clampedarray';
-declare function kindOf(val: Int16Array): 'int16array';
-declare function kindOf(val: Uint16Array): 'uint16array';
-declare function kindOf(val: Int32Array): 'int32array';
-declare function kindOf(val: Uint32Array): 'uint32array';
-declare function kindOf(val: Float32Array): 'float32array';
-declare function kindOf(val: Float64Array): 'float64array';
-declare function kindOf(val: IArguments): 'arguments';
-declare function kindOf(val: {
+declare type GeneratorLike = {
     throw: Function;
     return: Function;
     next: Function;
-}): 'generator';
-declare function kindOf(val: NodeJS.Global): 'global';
-declare function kindOf(val: Window): 'window';
-declare function kindOf(val: object): 'object';
-declare function kindOf(val: any): string;
+};
+declare type KindOf<T> =
+    T extends undefined ? "undefined" :
+    T extends null ? "null" :
+    T extends boolean | Boolean ? "boolean" :
+    T extends string | String ? "string" :
+    T extends number | Number ? "number" :
+    T extends symbol ? "symbol" :
+    T extends IterableIterator<any> ? "mapiterator" | "setiterator" | "stringiterator" | "arrayiterator" :
+    T extends (...args: any[]) => IterableIterator<any> ? "generatorfunction" :
+    T extends Function ? "function" :
+    T extends Array<any> ? "array" :
+    T extends Date | DateLike ? "date" :
+    T extends Buffer ? "buffer" :
+    T extends Error ? "error" :
+    T extends RegExp | RegExpLike ? "regexp" :
+    T extends Promise<any> ? "promise" :
+    T extends WeakMap<any, any> ? 'weakmap' :
+    T extends WeakSet<any> ? 'weakset' :
+    T extends Map<any, any> ? 'map' :
+    T extends Set<any> ? 'set' :
+    T extends Int8Array ? 'int8array' :
+    T extends Uint8Array ? 'uint8array' :
+    T extends Uint8ClampedArray ? 'uint8clampedarray' :
+    T extends Int16Array ? 'int16array' :
+    T extends Uint16Array ? 'uint16array' :
+    T extends Int32Array ? 'int32array' :
+    T extends Uint32Array ? 'uint32array' :
+    T extends Float32Array ? 'float32array' :
+    T extends Float64Array ? 'float64array' :
+    T extends IArguments ? 'arguments' :
+    T extends GeneratorLike ? 'generator' :
+    T extends NodeJS.Global ? 'global' :
+    T extends Window ? 'window' :
+    T extends object ? 'object' :
+    string;
+declare function kindOf(): KindOf<undefined>;
+declare function kindOf<T>(v: T): KindOf<T>;
 export default kindOf;
