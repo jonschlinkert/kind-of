@@ -17,6 +17,16 @@ module.exports = function() {
       assert.strictEqual(kindOf(promise), 'promise');
     });
 
+    it('should work for async functions', function() {
+      function awaiter() {
+        return true;
+      }
+      var gen = async function named() {
+        return await awaiter();
+      };
+      assert.equal(kindOf(gen), 'asyncfunction');
+    });
+
     it('should work for generator functions', function() {
       var gen = function * named() {
         return true;
@@ -73,18 +83,21 @@ module.exports = function() {
       var SetValuesIterator = new Set().values();
       assert.equal(kindOf(SetValuesIterator), 'setiterator');
     });
+
     it('should work for Map Iterator', function() {
       var MapValuesIterator = new Map().values();
       assert.equal(kindOf(MapValuesIterator), 'mapiterator');
     });
+
     it('should work for Array Iterator', function() {
       var ArrayEntriesIterator = [].entries();
       assert.equal(kindOf(ArrayEntriesIterator), 'arrayiterator');
-    })
+    });
+
     it('should work for String Iterator', function() {
       var StringCharIterator = ''[Symbol.iterator]();
       assert.equal(kindOf(StringCharIterator), 'stringiterator');
-    })
+    });
 
     it('should work for Symbol', function() {
       assert.equal(kindOf(Symbol('foo')), 'symbol');
@@ -134,6 +147,19 @@ module.exports = function() {
     it('should work for Float64Array', function() {
       var float64array = new Float64Array();
       assert.equal(kindOf(float64array), 'float64array');
+    });
+
+    it('should work for ArrayBuffer', function() {
+      var arrayBuffer = new ArrayBuffer(24);
+      assert.equal(kindOf(arrayBuffer), 'arraybuffer');
+    });
+
+    it('should work for DataView', function() {
+      var dataView = new DataView(new ArrayBuffer(24));
+      assert.equal(kindOf(dataView), 'dataview');
+      assert.equal(kindOf(dataView.buffer), 'arraybuffer');
+      assert.equal(kindOf(dataView.byteLength), 'number');
+      assert.equal(kindOf(dataView.byteOffset), 'number');
     });
   });
 };

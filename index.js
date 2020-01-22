@@ -9,9 +9,7 @@ module.exports = function kindOf(val) {
   if (type === 'string') return 'string';
   if (type === 'number') return 'number';
   if (type === 'symbol') return 'symbol';
-  if (type === 'function') {
-    return isGeneratorFn(val) ? 'generatorfunction' : 'function';
-  }
+  if (type === 'function') return functionType(val);
 
   if (isArray(val)) return 'array';
   if (isBuffer(val)) return 'buffer';
@@ -93,10 +91,6 @@ function isRegexp(val) {
     && typeof val.global === 'boolean';
 }
 
-function isGeneratorFn(name, val) {
-  return ctorName(name) === 'GeneratorFunction';
-}
-
 function isGeneratorObj(val) {
   return typeof val.throw === 'function'
     && typeof val.return === 'function'
@@ -126,4 +120,11 @@ function isBuffer(val) {
     return val.constructor.isBuffer(val);
   }
   return false;
+}
+
+function functionType(name) {
+  if (ctorName(name) === 'GeneratorFunction') return 'generatorfunction';
+  if (toString.call(name) === '[object AsyncFunction]') return 'asyncfunction';
+
+  return 'function';
 }
