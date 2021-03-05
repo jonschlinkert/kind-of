@@ -138,7 +138,7 @@ module.exports = function() {
 
     if ( typeof BigInt === 'function') {
         it('should work for BigInt', function () {
-            assert.strictEqual(kindOf(42n), 'bigint');
+            assert.strictEqual(kindOf(eval("BigInt(42n)")), 'bigint');
         });
     }
   });
