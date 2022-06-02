@@ -93,8 +93,8 @@ function isRegexp(val) {
     && typeof val.global === 'boolean';
 }
 
-function isGeneratorFn(name, val) {
-  return ctorName(name) === 'GeneratorFunction';
+function isGeneratorFn(val) {
+  return ctorName(val) === 'GeneratorFunction';
 }
 
 function isGeneratorObj(val) {
