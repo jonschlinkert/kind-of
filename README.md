@@ -50,7 +50,7 @@ kindOf(true);
 kindOf(false);
 //=> 'boolean'
 
-kindOf(new Buffer(''));
+kindOf(Buffer.from(''));
 //=> 'buffer'
 
 kindOf(42);
@@ -288,7 +288,7 @@ Incorrectly returns `object` for generator functions, buffers, `Map`, `Set`, `We
 function * foo() {}
 console.log(typeOf(foo));
 //=> 'object'
-console.log(typeOf(new Buffer('')));
+console.log(typeOf(Buffer.from('')));
 //=> 'object'
 console.log(typeOf(new Map()));
 //=> 'object'
