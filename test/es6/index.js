@@ -1,5 +1,3 @@
-'use strict';
-
 import 'mocha';
 import assert from 'assert';
 import kindOf from '../../index.js';
