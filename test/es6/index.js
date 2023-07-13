@@ -1,5 +1,5 @@
 import 'mocha';
-import assert from 'assert';
+import assert from 'node:assert';
 import kindOf from '../../index.js';
 
 export default function() {
