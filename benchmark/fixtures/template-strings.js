@@ -1,1 +1,1 @@
-module.exports = [`welcome buddy`];
+export default [`welcome buddy`];

@@ -1,6 +1,6 @@
 var toString = Object.prototype.toString;
 
-module.exports = function kindOf(val) {
+export default function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 

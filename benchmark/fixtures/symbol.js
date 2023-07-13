@@ -1,1 +1,1 @@
-module.exports = [Symbol('foo')];
+export default [Symbol('foo')];

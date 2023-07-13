@@ -1,6 +1,6 @@
 var re = /^\[object (\w+)\]$/;
 
-module.exports = function typeOf(val) {
+export default function typeOf(val) {
   if (val === null) {
     return 'null';
   }

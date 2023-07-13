@@ -1,1 +1,1 @@
-module.exports = [new Buffer('foo')];
+export default [new Buffer('foo')];

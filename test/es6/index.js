@@ -1,10 +1,10 @@
 'use strict';
 
-require('mocha');
-var assert = require('assert');
-var kindOf = require('../..');
+import 'mocha';
+import assert from 'assert';
+import kindOf from '../../index.js';
 
-module.exports = function() {
+export default function() {
   describe('es6 features', function() {
     it('should work for resolved promises', function() {
       var promise = Promise.resolve(123);

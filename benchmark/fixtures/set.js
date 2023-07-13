@@ -1,1 +1,1 @@
-module.exports = [new Set()];
+export default [new Set()];

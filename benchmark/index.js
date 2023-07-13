@@ -1,8 +1,6 @@
-'use strict';
-
-var path = require('path');
-var suite = require('benchmarked');
-var write = require('write');
+import path from 'path';
+import suite from 'benchmarked';
+import write from 'write';
 
 suite.run({
   fixtures: 'fixtures/*.js',

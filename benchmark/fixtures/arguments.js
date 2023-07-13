@@ -1,1 +1,1 @@
-module.exports = ['arguments'];
+export default ['arguments'];

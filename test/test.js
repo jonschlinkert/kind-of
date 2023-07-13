@@ -1,8 +1,7 @@
-'use strict';
-
-require('mocha');
-var assert = require('assert');
-var kindOf = require('..');
+import 'mocha';
+import assert from 'assert';
+import kindOf from '../index.js';
+import es6 from './es6/index.js';
 
 var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
 var major = version[1];
@@ -90,6 +89,6 @@ describe('kindOf', function() {
   });
 
   if (major > 5) {
-    require('./es6')();
+    es6()
   }
 });

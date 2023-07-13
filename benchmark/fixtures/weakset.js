@@ -1,1 +1,1 @@
-module.exports = [new WeakSet()];
+export default [new WeakSet()];

@@ -23,6 +23,7 @@
     "index.js"
   ],
   "main": "index.js",
+  "type": "module",
   "engines": {
     "node": ">=0.16"
   },

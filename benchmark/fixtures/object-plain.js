@@ -1,2 +1,2 @@
 function Foo() {}
-module.exports = [new Foo()];
+export default [new Foo()];
