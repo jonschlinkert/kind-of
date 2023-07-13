@@ -3,9 +3,6 @@ import assert from 'assert';
 import kindOf from '../index.js';
 import es6 from './es6/index.js';
 
-var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
-var major = version[1];
-
 describe('kindOf', function() {
   /* eslint no-new-wrappers: 0 */
 
@@ -88,7 +85,5 @@ describe('kindOf', function() {
     });
   });
 
-  if (major > 5) {
-    es6()
-  }
+  es6()
 });
