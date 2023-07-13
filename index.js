@@ -1,4 +1,5 @@
 var toString = Object.prototype.toString;
+var {isArray} = Array;
 
 export default function kindOf(val) {
   if (val === void 0) return 'undefined';
@@ -67,11 +68,6 @@ export default function kindOf(val) {
 
 function ctorName(val) {
   return typeof val.constructor === 'function' ? val.constructor.name : null;
-}
-
-function isArray(val) {
-  if (Array.isArray) return Array.isArray(val);
-  return val instanceof Array;
 }
 
 function isError(val) {
