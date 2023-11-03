@@ -1,6 +1,6 @@
-var typeOf = require('../..');
+import typeOf from '../../index.js';
 
-module.exports = function(val) {
+export default function(val) {
   if (val === 'arguments') {
     return typeOf(arguments);
   }

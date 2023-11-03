@@ -1,1 +1,1 @@
-module.exports = [function * gen() {}]
+export default [function * gen() {}]

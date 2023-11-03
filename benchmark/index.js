@@ -1,15 +1,11 @@
-'use strict';
+import path from 'node:path';
+import suite from 'benchmarked';
+import write from 'write';
 
-var path = require('path');
-var suite = require('benchmarked');
-var write = require('write');
-
-suite.run({
+const stats = await suite.run({
   fixtures: 'fixtures/*.js',
   code: 'code/{kind-of,lib-*}.js'
 })
-  .then(function(stats) {
-    write.sync(path.join(__dirname, 'stats.json'), JSON.stringify(stats, null, 2))
-    write.sync(path.join(__dirname, 'stats.md'), suite.render(stats));
-  })
-  .catch(console.error);
+
+write.sync(path.join(__dirname, 'stats.json'), JSON.stringify(stats, null, 2))
+write.sync(path.join(__dirname, 'stats.md'), suite.render(stats));

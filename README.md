@@ -24,7 +24,7 @@ $ npm install --save kind-of
 > es5, es6, and browser ready
 
 ```js
-const kindOf = require('kind-of');
+import kindOf from 'kind-of';
 
 kindOf(undefined);
 //=> 'undefined'
@@ -38,7 +38,7 @@ kindOf(true);
 kindOf(false);
 //=> 'boolean'
 
-kindOf(new Buffer(''));
+kindOf(Buffer.from(''));
 //=> 'buffer'
 
 kindOf(42);
@@ -242,7 +242,7 @@ In 7 out of 8 cases, this library is 2x-10x faster than other top libraries incl
 1. Optimize around the fastest and most common use cases first. Of course, this will change from project-to-project, but I took some time to understand how and why `typeof` checks were being used in my own libraries and other libraries I use a lot.
 2. Optimize around bottlenecks - In other words, the order in which conditionals are implemented is significant, because each check is only as fast as the failing checks that came before it. Here, the biggest bottleneck by far is checking for plain objects (an object that was created by the `Object` constructor). I opted to make this check happen by process of elimination rather than brute force up front (e.g. by using something like `val.constructor.name`), so that every other type check would not be penalized it.
 3. Don't do uneccessary processing - why do `.slice(8, -1).toLowerCase();` just to get the word `regex`? It's much faster to do `if (type === '[object RegExp]') return 'regex'`
-4. There is no reason to make the code in a microlib as terse as possible, just to win points for making it shorter. It's always better to favor performant code over terse code. You will always only be using a single `require()` statement to use the library anyway, regardless of how the code is written.
+4. There is no reason to make the code in a microlib as terse as possible, just to win points for making it shorter. It's always better to favor performant code over terse code. You will always only be using a single `import` statement to use the library anyway, regardless of how the code is written.
 
 ## Better type checking
 
@@ -253,7 +253,7 @@ kind-of seems to be more consistently "correct" than other type checking libs I'
 Incorrectly identifies instances of custom constructors (pretty common):
 
 ```js
-var typeOf = require('typeof');
+import typeOf from 'typeof';
 function Test() {}
 console.log(typeOf(new Test()));
 //=> 'test'
@@ -276,7 +276,7 @@ Incorrectly returns `object` for generator functions, buffers, `Map`, `Set`, `We
 function * foo() {}
 console.log(typeOf(foo));
 //=> 'object'
-console.log(typeOf(new Buffer('')));
+console.log(typeOf(Buffer.from('')));
 //=> 'object'
 console.log(typeOf(new Map()));
 //=> 'object'

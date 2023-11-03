@@ -1,1 +1,1 @@
-module.exports = [new Error('foo')];
+export default [new Error('foo')];

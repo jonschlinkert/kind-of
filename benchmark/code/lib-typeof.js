@@ -1,10 +1,10 @@
 /**
  * http://github.com/CodingFu/typeof
  */
-// var typeOf = require('typeof');
+// import typeOf from 'typeof';
 var toString = Object.prototype.toString;
 
-module.exports = function(val) {
+export default function(val) {
   if (val === 'arguments') {
     return typeOf(arguments);
   }

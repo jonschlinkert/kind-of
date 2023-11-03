@@ -1,11 +1,7 @@
-'use strict';
-
-require('mocha');
-var assert = require('assert');
-var kindOf = require('..');
-
-var version = process.version.match(/^v(\d+)\.(\d+)\.(\d+)/);
-var major = version[1];
+import 'mocha';
+import assert from 'node:assert';
+import kindOf from '../index.js';
+import es6 from './es6/index.js';
 
 describe('kindOf', function() {
   /* eslint no-new-wrappers: 0 */
@@ -46,7 +42,7 @@ describe('kindOf', function() {
     });
 
     it('should work for buffers', function() {
-      assert.equal(kindOf(new Buffer('')), 'buffer');
+      assert.equal(kindOf(Buffer.from('')), 'buffer');
     });
 
     it('should work for objects', function() {
@@ -89,7 +85,5 @@ describe('kindOf', function() {
     });
   });
 
-  if (major > 5) {
-    require('./es6')();
-  }
+  es6()
 });
