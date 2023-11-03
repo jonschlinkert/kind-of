@@ -14,18 +14,6 @@ $ npm install --save kind-of
 
 <br />
 
-# Sponsors
-
-Thanks to the following companies, organizations, and individuals for supporting the ongoing maintenance and development of kind-of! [Become a Sponsor](https://github.com/sponsors/jonschlinkert) to add your logo to this README, or any of [my other projects](https://github.com/jonschlinkert?tab=repositories&q=&type=&language=&sort=stargazers)
-
-## Gold Sponsors
-
-| [<img src="https://github.com/jonschlinkert/kind-of/assets/383994/c1a655d7-c4a8-46cb-8660-e4251c17e4de" alt="https://jaake.tech/" width="100"/>](https://jaake.tech/) |
-|:---:|
-| [https://jaake.tech/](https://jaake.tech/) |
-
-<br />
-
 ## Why use this?
 
 1. [it's fast](#benchmarks) | [optimizations](#optimizations)
