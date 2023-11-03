@@ -9,6 +9,7 @@ module.exports = function kindOf(val) {
   if (type === 'string') return 'string';
   if (type === 'number') return 'number';
   if (type === 'symbol') return 'symbol';
+  if (type === 'bigint') return 'bigint';
   if (type === 'function') {
     return isGeneratorFn(val) ? 'generatorfunction' : 'function';
   }

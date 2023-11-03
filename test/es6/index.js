@@ -135,5 +135,11 @@ module.exports = function() {
       var float64array = new Float64Array();
       assert.equal(kindOf(float64array), 'float64array');
     });
+
+    if ( typeof BigInt === 'function') {
+        it('should work for BigInt', function () {
+            assert.strictEqual(kindOf(eval("BigInt(42n)")), 'bigint');
+        });
+    }
   });
 };

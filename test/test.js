@@ -46,7 +46,7 @@ describe('kindOf', function() {
     });
 
     it('should work for buffers', function() {
-      assert.equal(kindOf(new Buffer('')), 'buffer');
+      assert.equal(kindOf(Buffer.from('')), 'buffer');
     });
 
     it('should work for objects', function() {
